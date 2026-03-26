@@ -1225,46 +1225,9 @@
         <p style="font-size:0.875rem;color:var(--text-2);margin-bottom:2rem;line-height:1.7;">입시 준비에 도움이 되는 글과 영상을 꾸준히 올리고 있습니다. 수업 전에 읽어두면 상담 시간이 더 풍부해집니다.</p>
 
         <div class="content-section">
-            <h3>영화입시 가이드</h3>
-            <div class="blog-grid">
-            <a href="https://blog.naver.com/songtorytelling/224225973861" target="_blank" class="blog-card">
-                <div class="blog-card-body">
-                    <p class="blog-tag">기초가이드 ①</p>
-                    <p class="blog-card-title">실기는 100:1의 싸움, 기억에 남아야 한다</p>
-                    <p class="blog-card-desc">5~10분 안에 교수님 기억에 남는 법</p>
-                </div>
-                <span class="blog-arrow">→</span>
-            </a>
-            <a href="https://blog.naver.com/songtorytelling" target="_blank" class="blog-card">
-                <div class="blog-card-body">
-                    <p class="blog-tag">기초가이드 ②</p>
-                    <p class="blog-card-title">영화 매니아와 영화과 지망생의 결정적 차이</p>
-                    <p class="blog-card-desc">"이 영화가 좋았다"가 아니라 "이렇게 만들고 싶다"</p>
-                </div>
-                <span class="blog-arrow">→</span>
-            </a>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <h3>학원 vs 과외</h3>
-            <div class="blog-grid">
-            <a href="https://blog.naver.com/songtorytelling/224217644667" target="_blank" class="blog-card">
-                <div class="blog-card-body">
-                    <p class="blog-tag">학원문제 ①</p>
-                    <p class="blog-card-title">강사마다 다른 수업, 복불복 구조의 진실</p>
-                    <p class="blog-card-desc">6년간 150명을 가르친 어드쌤이 본 학원의 구조적 문제</p>
-                </div>
-                <span class="blog-arrow">→</span>
-            </a>
-            <a href="https://blog.naver.com/songtorytelling/224217683817" target="_blank" class="blog-card">
-                <div class="blog-card-body">
-                    <p class="blog-tag">학원문제 ②</p>
-                    <p class="blog-card-title">다대일 수업의 함정</p>
-                    <p class="blog-card-desc">실력 차이가 큰 학생들이 같은 반에 섞이면 생기는 일</p>
-                </div>
-                <span class="blog-arrow">→</span>
-            </a>
+            <h3>최신 글</h3>
+            <div class="blog-grid" id="dynamic-blog-grid">
+                <p style="color:var(--text-3);font-size:0.875rem;">불러오는 중...</p>
             </div>
         </div>
 
@@ -1441,6 +1404,32 @@
     navBtns.forEach(btn => {
         btn.addEventListener('click', () => showPage(btn.dataset.page));
     });
+
+    async function loadBlogPosts() {
+        try {
+            const res = await fetch('posts.json');
+            const posts = await res.json();
+            const published = posts
+                .filter(p => p.status === '발행완료')
+                .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))
+                .slice(0, 6);
+            const grid = document.getElementById('dynamic-blog-grid');
+            if (!grid || published.length === 0) return;
+            grid.innerHTML = published.map(p => `
+                <a href="${p.url}" target="_blank" class="blog-card">
+                    <div class="blog-card-body">
+                        <p class="blog-tag">${p.tag}</p>
+                        <p class="blog-card-title">${p.title}</p>
+                        ${p.desc ? `<p class="blog-card-desc">${p.desc}</p>` : ''}
+                    </div>
+                    <span class="blog-arrow">→</span>
+                </a>
+            `).join('');
+        } catch(e) {
+            console.error('posts.json load failed', e);
+        }
+    }
+    loadBlogPosts();
 
 
 </script>
