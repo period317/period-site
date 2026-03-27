@@ -398,12 +398,35 @@
 
         .inline-link:hover { opacity: 0.8; }
 
+        /* ── TEACHER PROFILE ── */
+        .teacher-profile {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .teacher-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 2px solid var(--border);
+        }
+
+        .teacher-profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
         /* ── TEACHER NAME ROW ── */
         .teacher-name-row {
             display: flex;
             align-items: baseline;
             gap: 0.75rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0;
         }
 
         .teacher-name-row h3 {
@@ -1087,9 +1110,14 @@
         <p style="font-size:0.875rem;color:var(--text-2);margin-bottom:2rem;line-height:1.7;">어드쌤과 피리쌤, 두 명이 함께합니다. 학생 상담과 입시 관리 총괄은 어드쌤이 맡습니다.</p>
 
         <div class="content-section">
-            <div class="teacher-name-row">
-                <h3>어드쌤</h3>
-                <a href="https://blog.naver.com/songtorytelling/224217327581" target="_blank" class="teacher-link">상세소개 →</a>
+            <div class="teacher-profile">
+                <img src="profile-ad.png" alt="어드쌤 프로필" class="teacher-avatar">
+                <div class="teacher-profile-info">
+                    <div class="teacher-name-row">
+                        <h3>어드쌤</h3>
+                        <a href="https://blog.naver.com/songtorytelling/224217327581" target="_blank" class="teacher-link">상세소개 →</a>
+                    </div>
+                </div>
             </div>
 
             <div class="timeline">
@@ -1118,9 +1146,14 @@
         </div>
 
         <div class="content-section">
-            <div class="teacher-name-row">
-                <h3>피리쌤</h3>
-                <a href="https://blog.naver.com/songtorytelling/224217581391" target="_blank" class="teacher-link">상세소개 →</a>
+            <div class="teacher-profile">
+                <img src="profile-piri.png" alt="피리쌤 프로필" class="teacher-avatar">
+                <div class="teacher-profile-info">
+                    <div class="teacher-name-row">
+                        <h3>피리쌤</h3>
+                        <a href="https://blog.naver.com/songtorytelling/224217581391" target="_blank" class="teacher-link">상세소개 →</a>
+                    </div>
+                </div>
             </div>
 
             <div class="timeline">
