@@ -1490,7 +1490,7 @@
     const pages = document.querySelectorAll('.page');
     const navBtns = document.querySelectorAll('.nav-btn');
 
-    function showPage(name) {
+    function showPage(name, updateHash = true) {
         pages.forEach(p => p.classList.remove('active'));
         navBtns.forEach(b => b.classList.remove('active'));
         document.getElementById(name).classList.add('active');
@@ -1501,10 +1501,22 @@
         activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (updateHash) history.pushState(null, '', '#' + name);
     }
 
     navBtns.forEach(btn => {
         btn.addEventListener('click', () => showPage(btn.dataset.page));
+    });
+
+    // 초기 로드 및 뒤로가기 처리
+    const validPages = ['home', 'teacher', 'class', 'content', 'reviews', 'consultation'];
+    const initHash = location.hash.replace('#', '');
+    if (initHash && validPages.includes(initHash)) showPage(initHash, false);
+
+    window.addEventListener('popstate', () => {
+        const hash = location.hash.replace('#', '');
+        if (hash && validPages.includes(hash)) showPage(hash, false);
+        else showPage('home', false);
     });
 
     async function loadBlogPosts() {
