@@ -899,34 +899,81 @@
             cursor: pointer;
         }
 
-        /* ── FLOATING BTN ── */
+        /* ── FLOATING BTN (Speed Dial) ── */
         .fab {
             position: fixed;
             bottom: 1.5rem;
             right: 1.25rem;
             z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.5rem;
         }
+        .fab-options {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.5rem;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: all 0.25s ease;
+        }
+        .fab.open .fab-options {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .fab-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.1rem;
+            border: none;
+            border-radius: 50px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            transition: all 0.2s;
+            letter-spacing: -0.2px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .fab-option.kakao { background: #FEE500; color: #3C1E1E; }
+        .fab-option.kakao:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.2); transform: translateY(-2px); }
+        .fab-option.consult { background: var(--pink); color: #fff; }
+        .fab-option.consult:hover { box-shadow: 0 6px 20px rgba(142,42,75,0.35); transform: translateY(-2px); }
 
         .fab-btn {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.375rem;
+            justify-content: center;
+            width: 3.25rem;
+            height: 3.25rem;
+            padding: 0;
             background: var(--pink);
             color: #fff;
             border: none;
-            border-radius: 50px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 700;
+            border-radius: 50%;
+            font-size: 1.25rem;
             cursor: pointer;
             box-shadow: 0 6px 24px rgba(142,42,75,0.35);
-            transition: all 0.2s;
-            letter-spacing: -0.2px;
+            transition: all 0.3s;
         }
-
+        .fab.open .fab-btn { background: var(--text); transform: rotate(45deg); }
         .fab-btn:hover { box-shadow: 0 8px 32px rgba(142,42,75,0.4); transform: translateY(-2px); }
+        .fab.open .fab-btn:hover { transform: rotate(45deg) translateY(-2px); }
         .fab-btn:active { transform: scale(0.96); }
+        .fab-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 99;
+        }
+        .fab.open ~ .fab-overlay { display: block; }
 
         /* ── FOOTER ── */
         footer {
@@ -1040,6 +1087,7 @@
 
             /* FAB 위치 */
             .fab { bottom: 2.5rem; right: 2.5rem; }
+            .fab-btn { width: 3.5rem; height: 3.5rem; font-size: 1.375rem; }
         }
 
         @media (min-width: 1200px) {
@@ -1491,7 +1539,16 @@
             <p>학생과 학부모님이 충분히 신뢰를 갖고 결정할 수 있도록 상담과 진단을 무료로 제공합니다. 30분 상담이 입시 방향을 완전히 바꿀 수 있습니다.</p>
         </div>
 
-        <p style="font-size:0.875rem;color:var(--text-2);margin-bottom:1.75rem;line-height:1.7;">영화 입시를 앞두고 실력이 어느 정도인지, 어떤 준비가 필요한지 궁금하신가요?<br>편하게 신청해 주시면 무료로 상담해 드릴게요 :)</p>
+        <p style="font-size:0.875rem;color:var(--text-2);margin-bottom:1rem;line-height:1.7;">영화 입시를 앞두고 실력이 어느 정도인지, 어떤 준비가 필요한지 궁금하신가요?<br>편하게 신청해 주시면 무료로 상담해 드릴게요 :)</p>
+
+        <div style="display:flex;align-items:center;gap:0.625rem;background:#FEE500;border-radius:var(--radius);padding:0.875rem 1rem;margin-bottom:1.75rem;">
+            <span style="font-size:1.25rem;">💬</span>
+            <div style="flex:1;">
+                <p style="font-size:0.8125rem;font-weight:700;color:#3C1E1E;margin:0;">간단한 질문은 카카오톡으로!</p>
+                <p style="font-size:0.72rem;color:#5C3E1E;margin:0.15rem 0 0;">부담 없이 물어보세요. 빠르게 답변드릴게요.</p>
+            </div>
+            <a href="https://open.kakao.com/me/film_period" target="_blank" style="background:#3C1E1E;color:#FEE500;font-size:0.75rem;font-weight:700;padding:0.45rem 0.875rem;border-radius:50px;text-decoration:none;white-space:nowrap;">채팅하기</a>
+        </div>
 
         <div id="form-success" style="display:none;background:#f0fdf8;border:1px solid var(--mint);border-radius:var(--radius);padding:2rem 1.5rem;text-align:center;margin-bottom:1.5rem;">
             <p style="font-size:1.125rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;">신청해 주셔서 감사해요!</p>
@@ -1633,10 +1690,15 @@
     <a href="#">개인정보처리방침</a> · <a href="#">이용약관</a></p>
 </footer>
 
-<!-- FAB -->
-<div class="fab">
-    <button class="fab-btn" onclick="showPage('consultation')">무료상담</button>
+<!-- FAB Speed Dial -->
+<div class="fab" id="fab">
+    <div class="fab-options">
+        <a href="https://open.kakao.com/me/film_period" target="_blank" class="fab-option kakao">💬 카카오톡 문의</a>
+        <button class="fab-option consult" onclick="closeFab(); showPage('consultation');">📝 상담 신청</button>
+    </div>
+    <button class="fab-btn" onclick="toggleFab()" aria-label="문의하기">✦</button>
 </div>
+<div class="fab-overlay" onclick="closeFab()"></div>
 
 <!-- MODALS -->
 
@@ -1848,6 +1910,14 @@
 
 
 
+
+    // FAB speed dial
+    function toggleFab() {
+        document.getElementById('fab').classList.toggle('open');
+    }
+    function closeFab() {
+        document.getElementById('fab').classList.remove('open');
+    }
 
     // 상담 폼 제출
     const consultForm = document.getElementById('consult-form');
