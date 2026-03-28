@@ -428,30 +428,15 @@
             margin-bottom: 0.2rem;
         }
         .review-summary li::before { content: "• "; color: var(--mint); font-weight: 700; }
-        .review-toggle {
+        .review-excerpt {
             font-size: 0.8125rem;
-            color: var(--pink);
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            font-weight: 600;
-        }
-        .review-toggle:hover { text-decoration: underline; }
-        .review-full {
-            max-height: 0;
+            color: var(--text-3);
+            line-height: 1.65;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
             overflow: hidden;
-            transition: max-height 0.35s ease;
-            font-size: 0.8125rem;
-            color: var(--text-2);
-            line-height: 1.75;
-            margin-top: 0;
-        }
-        .review-full.open {
-            max-height: 2000px;
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--border);
+            margin: 0;
         }
 
         /* ── INLINE LINK ── */
@@ -1158,8 +1143,6 @@
 
             .reviews-grid .review-item { margin-top: 0; }
 
-            .review-item .review-full { max-height: 400px; }
-
             /* 상담 배너 */
             .consult-banner { max-width: 640px; }
 
@@ -1807,18 +1790,13 @@
             </div>
         </div>
 
-        <div class="content-section">
-            <h3>지금까지의 학생들 (2019~2025)</h3>
-            <p style="font-size:0.875rem;color:var(--text-2);margin-bottom:1.25rem;line-height:1.7;">많은 경우 다른 학원·과외를 경험하고 소개받아 온 학생들이었습니다. 수업 기간이 짧았던 경우도 많았지만, 입시 종료 전에 그만둔 학생은 한 명도 없었습니다.</p>
-
-            <div class="card" style="margin-top:0.5rem;">
-                <p style="font-size:0.875rem;color:var(--text-2);line-height:1.75;">한국예술종합학교, 중앙대, 서경대, 서울예대, 숭실대, 성균관대, 동아방송대, 백석예대 등에 합격했습니다. 각 학생의 자세한 이야기는 블로그에서 확인하세요.</p>
-                <a href="https://blog.naver.com/songtorytelling/224217633492" target="_blank" class="inline-link">블로그에서 보기 →</a>
-            </div>
+        <div style="text-align:center;margin-bottom:1.5rem;">
+            <img src="review-thumb.png" alt="수강생 후기" style="width:160px;height:auto;border-radius:12px;">
         </div>
 
         <div class="content-section">
             <h3>학생 후기</h3>
+            <p style="font-size:0.8125rem;color:var(--text-3);margin-bottom:1rem;">한국예술종합학교, 중앙대, 서경대, 서울예대, 숭실대, 성균관대 등 합격 · 자세한 이야기는 블로그에서</p>
             <div class="reviews-grid">
 
                 <div class="review-item">
@@ -1829,8 +1807,7 @@
                         <li>면접지도 못 적던 상태에서 나만의 면접지를 완성</li>
                         <li>학교별 입시 유형을 분석해 가능한 학교를 정확히 겨냥</li>
                     </ul>
-                    <button class="review-toggle" onclick="toggleReview(this)">후기 전문 보기 ↓</button>
-                    <div class="review-full">서경대학교 영화영상학과에 합격했습니다.<br><br>고등학교에서 3년간 영화·영상 수업을 받았지만 내신은 4에서 6까지 나올 정도로 인서울은 꿈도 꾸지 못하는 수준이었습니다. 3학년이 되어보니 기본적인 면접지도 못 적을 정도로 제 자신에 대해 모르는 상태였고 그러던 중 어드쌤을 만나게 되었습니다.<br><br>선생님은 제 내신을 보시고 어느 대학까지 가능할지 세세하게 말씀해주셨습니다. 학교 별 입시 유형이 다르다는 점을 이용해 수도권 대학을 겨냥해 준비하니 두 군데의 수도권 대학에 붙을 수 있었습니다.<br><br>거의 매 수업마다(ㅎㅎ) 선생님과 긴 대화를 하다보니 저도 모르던 제 속마음을 알게 되더라구요?!! 남들과 다른 저만의 면접지를 완성할 수 있게 되었고 실제로 합격할 수 있었던 것 같습니다.<br><br>어드쌤은 '과외'라는 존재만으로 불안함을 덜어주는 것이 아닌 정말 실질적으로 입시에 대해 많은 도움을 주실 수 있는 분이라고 생각합니다. 선생님 믿고 따라가다 보면 어느순간 원하는 학교에 착! 붙어있을거에요.</div>
+                    <p class="review-excerpt">고등학교에서 3년간 영화·영상 수업을 받았지만 내신은 4에서 6까지 나올 정도로 인서울은 꿈도 꾸지 못하는 수준이었습니다. 어드쌤을 만나고, 학교 별 입시 유형이 다르다는 점을 이용해 수도권 대학을 겨냥해 준비하니 두 군데의 수도권 대학에 붙을 수 있었습니다...</p>
                 </div>
 
                 <div class="review-item">
@@ -1841,8 +1818,7 @@
                         <li>학원은 한 명 한 명 피드백이 어렵지만, 과외는 방향을 구체적으로 잡아줌</li>
                         <li>글쓰기부터 면접, 멘탈 관리까지 끝까지 끌어주는 수업</li>
                     </ul>
-                    <button class="review-toggle" onclick="toggleReview(this)">후기 전문 보기 ↓</button>
-                    <div class="review-full">어드쌤 덕분에 대진대학교 영화영상학과에 합격했습니다.<br><br>어드쌤을 만나기 전 저는 사실 영화보다는 연기에 더 관심이 많던 학생이었습니다. 영화과 입시를 처음 준비하는 저에게는 모든 것이 낯설고 막막했습니다.<br><br>정말 아무것도 모르는 상태였지만 어드쌤은 하나하나 세세하게 알려주셨고, 수업 시간 외에도 카톡으로 여쭤볼 때마다 성심껏 답변해주셨습니다.<br><br>입시가 막바지에 다다랐을 때 어드쌤이 "네가 제일 좋아하는 게 뭐냐"고 물어보셨고, 저는 신발이라고 답했습니다. "그럼 신발 걸고 해보자"고 하셨고, 제가 가장 아끼던 한정판 신발 3가지를 걸었습니다.<br><br>이후 학원을 다녀봤는데, 많은 인원을 한 선생님이 담당하는 구조에서는 한 명 한 명에게 깊이 있는 피드백이 어렵다는 것을 느꼈습니다. 저에게는 방향을 구체적으로 잡아주고 끝까지 밀어주는 방식이 더 잘 맞았습니다.<br><br>영화를 하고 싶지만 어떻게 시작해야 할지 모르는 분들이 있다면 어드쌤과 함께해보셨으면 좋겠습니다.</div>
+                    <p class="review-excerpt">영화과 입시를 처음 준비하는 저에게는 모든 것이 낯설고 막막했습니다. 아무것도 모르는 상태였지만 어드쌤은 하나하나 세세하게 알려주셨고, 수업 시간 외에도 카톡으로 여쭤볼 때마다 성심껏 답변해주셨습니다...</p>
                 </div>
 
                 <div class="review-item">
@@ -1853,8 +1829,7 @@
                         <li>한 달 만에 성격, 장단점, 사고방식을 파악해주신 맞춤형 수업</li>
                         <li>불합격 통보에 무너질 때도 끝까지 붙잡아주신 멘탈 관리</li>
                     </ul>
-                    <button class="review-toggle" onclick="toggleReview(this)">후기 전문 보기 ↓</button>
-                    <div class="review-full">고등학교 3학년 3월, 단순히 영화가 좋다는 이유로 입시를 준비하게 되었습니다. 학원을 다니다가 개인적인 피드백에 한계가 있었고, 과외를 알아보다 5월에 어드쌤을 만나게 되었습니다.<br><br>한 달도 안 되는 시간 안에 제 성격, 장단점, 말투, 사고방식을 파악하셨고 면접관에게 어떻게 저만의 매력을 보여줄 수 있을지 구체적으로 알려주셨어요.<br><br>불합격 통보를 받았을 때 무너지려는 저를 붙잡아주셨던 분이 어드쌤이셨어요. 다시 생각해봐도 어드쌤이 아니셨다면 입시를 끝까지 버티지 못했을 거예요.<br><br>어드쌤의 수업을 너무너무x1000 추천하고 싶습니다!</div>
+                    <p class="review-excerpt">학원을 다니다가 개인적인 피드백에 한계가 있었고, 과외를 알아보다 어드쌤을 만나게 되었습니다. 한 달도 안 되는 시간 안에 제 성격, 장단점을 파악하셨고 저만의 매력을 보여줄 수 있을지 구체적으로 알려주셨어요...</p>
                 </div>
 
                 <div class="review-item">
@@ -1865,8 +1840,7 @@
                         <li>스스로를 알아가는 수업을 통해 면접에 자신감을 얻음</li>
                         <li>오르지 못할 나무라고 생각했던 숭실대에 합격</li>
                     </ul>
-                    <button class="review-toggle" onclick="toggleReview(this)">후기 전문 보기 ↓</button>
-                    <div class="review-full">고3 시절 처음으로 영화과 입시를 시작했다. 사실 당시에는 나름대로 영화를 좀 잘 안다는 생각이 있었다. 하지만 입시를 시작하고 마주했던 건 혹독한 현실이었다.<br><br>어드쌤은 크게 두 가지를 가르쳐 주셨다.<br>하나. 너는 바보다. 고3은 생각보다 똑똑하지 않다.<br>둘. 영화과를 가고 싶다면, 스스로에 대해서 먼저 알아야 한다.<br><br>선생님은 종종 독설을 하곤 하셨다. 하지만 모든 것이 사실이었기에 반박할 수도 없었다. 오기로 버텼던 것도 있다. 그건 어느샌가 학습에 대한 열정이 되어 있었다.<br><br>숭실대 또한 오르지 못할 나무 보듯 했던 학교였다. 하지만 결국에는 이루어냈다. 그 순간만큼은 내가 세상을 가졌다.<br><br>만약 영화과를 고민하는 이라면, 나는 적극적으로 어드쌤께 수업받기를 추천한다.</div>
+                    <p class="review-excerpt">입시를 시작하고 마주했던 건 혹독한 현실이었다. 어드쌤은 두 가지를 가르쳐 주셨다. 하나, 너는 바보다. 둘, 스스로에 대해서 먼저 알아야 한다. 숭실대는 오르지 못할 나무 보듯 했던 학교였다. 하지만 결국에는 이루어냈다...</p>
                 </div>
 
                 <div class="review-item">
@@ -1877,8 +1851,7 @@
                         <li>1:1 수업으로 막연하던 입시에 '기준'과 '방향'이 생김</li>
                         <li>입시 준비를 넘어 내가 어떤 사람인지 이해하게 된 경험</li>
                     </ul>
-                    <button class="review-toggle" onclick="toggleReview(this)">후기 전문 보기 ↓</button>
-                    <div class="review-full">저는 21년도에 어드쌤 수업을 듣게 되었습니다.<br><br>고등학교 1학년 때부터 영상을 공부해왔지만 3학년이 될 때까지 제가 추구하는 스타일을 찾지 못한 상태였습니다. 그룹 수업을 들었지만 내성적인 성격 탓에 다수가 있는 환경에서 제 이야기를 꺼내는 것 자체가 쉽지 않았습니다.<br><br>어드쌤과 피리쌤을 만나고, 막연했던 입시에 '기준'과 '방향'이 생겼습니다. 1:1 수업을 통해 좋아하는 영화와 감독을 하나씩 찾아가면서 '왜 좋아하는지'를 생각하게 되었고, 처음으로 입시를 준비하면서도 '재미'를 느끼게 되었습니다.<br><br>이 과정에서 쌤들과의 수업은 단순한 입시 준비를 넘어서 제가 어떤 사람인지 이해하게 되는 경험이었다고 생각합니다.</div>
+                    <p class="review-excerpt">그룹 수업을 들었지만 내성적인 성격 탓에 제 이야기를 꺼내는 것 자체가 쉽지 않았습니다. 어드쌤과 피리쌤을 만나고, 막연했던 입시에 '기준'과 '방향'이 생겼습니다. 처음으로 입시를 준비하면서도 '재미'를 느끼게 되었습니다...</p>
                 </div>
 
             </div>
@@ -2417,13 +2390,6 @@
         document.getElementById('class-' + tab).style.display = 'block';
         btn.classList.add('active');
         window.scrollTo({ top: document.getElementById('class').offsetTop, behavior: 'smooth' });
-    }
-
-    // Review toggle
-    function toggleReview(btn) {
-        const full = btn.nextElementSibling;
-        full.classList.toggle('open');
-        btn.textContent = full.classList.contains('open') ? '접기 ↑' : '후기 전문 보기 ↓';
     }
 
     // FAB speed dial
