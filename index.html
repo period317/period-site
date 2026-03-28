@@ -1085,9 +1085,11 @@
             .modal-sheet { max-width: 520px; border-radius: 20px; margin-bottom: 2rem; }
             .modal { align-items: center; }
 
-            /* FAB 위치 */
-            .fab { bottom: 2.5rem; right: 2.5rem; }
-            .fab-btn { width: 3.5rem; height: 3.5rem; font-size: 1.375rem; }
+            /* FAB: PC에서는 speed-dial 항상 펼침, 원형 버튼 숨김 */
+            .fab { bottom: 2.5rem; right: 2.5rem; flex-direction: row; gap: 0.625rem; }
+            .fab .fab-options { opacity: 1; transform: none; pointer-events: auto; flex-direction: row; gap: 0.625rem; }
+            .fab .fab-btn { display: none; }
+            .fab-overlay { display: none !important; }
         }
 
         @media (min-width: 1200px) {
