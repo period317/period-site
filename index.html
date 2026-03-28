@@ -552,6 +552,49 @@
             margin-top: 0.125rem;
         }
 
+        /* ── FILMDB ── */
+        .filmdb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .filmdb-tab { padding: 0.45rem 1.1rem; border: 1px solid var(--border-mid); border-radius: 50px; font-size: 0.8125rem; font-weight: 600; background: none; cursor: pointer; color: var(--text-3); transition: all 0.2s; }
+        .filmdb-tab.active { background: var(--text); color: #fff; border-color: var(--text); }
+
+        .filmdb-view { display: none; }
+        .filmdb-view.active { display: block; }
+
+        .filter-row { display: flex; gap: 0.375rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+        .filter-btn { padding: 0.3rem 0.875rem; border: 1px solid var(--border); border-radius: 50px; font-size: 0.75rem; font-weight: 600; background: none; cursor: pointer; color: var(--text-3); transition: all 0.2s; }
+        .filter-btn.active { background: var(--pink); color: #fff; border-color: var(--pink); }
+
+        .db-section-title { font-size: 0.75rem; font-weight: 700; color: var(--text-3); margin: 1.5rem 0 0.75rem; letter-spacing: 0; }
+        .db-section-title:first-child { margin-top: 0; }
+
+        .db-card { background: #fdfdfd; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.125rem; margin-bottom: 0.5rem; text-decoration: none; display: block; transition: all 0.2s; }
+        .db-card:hover { border-color: var(--border-mid); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .db-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.5rem; }
+        .db-card-name { font-size: 0.9rem; font-weight: 700; color: var(--text); letter-spacing: -0.2px; line-height: 1.4; }
+        .db-badge { font-size: 0.6875rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 50px; white-space: nowrap; flex-shrink: 0; }
+        .badge-youth { background: rgba(68,151,233,0.12); color: var(--blue); }
+        .badge-general { background: rgba(83,218,191,0.12); color: #2a8a74; }
+        .badge-support { background: rgba(145,121,145,0.12); color: var(--mauve); }
+        .db-card-meta { display: flex; flex-wrap: wrap; gap: 0.375rem 1rem; font-size: 0.78rem; color: var(--text-3); line-height: 1.5; }
+
+        /* DB Table */
+        .db-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); margin-top: 0.5rem; }
+        .db-table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+        .db-table th { text-align: left; padding: 0.5rem 0.875rem; font-size: 0.6875rem; font-weight: 700; color: var(--text-3); border-bottom: 2px solid var(--border); background: #fafafa; white-space: nowrap; }
+        .db-table td { padding: 0.625rem 0.875rem; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.45; }
+        .db-table tr:last-child td { border-bottom: none; }
+        .db-table tr:hover td { background: #fafafa; }
+        .db-table td:nth-child(2), .db-table td:nth-child(3) { white-space: nowrap; font-size: 0.78rem; color: var(--text-2); }
+        .db-table td:nth-child(4) { font-size: 0.75rem; color: var(--text-2); min-width: 120px; }
+        .dday-badge { font-size: 0.6875rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 50px; white-space: nowrap; display: inline-block; margin-left: 0.375rem; vertical-align: middle; }
+        .dday-urgent { background: rgba(241,41,108,0.1); color: var(--pink); }
+        .dday-soon { background: rgba(255,160,0,0.1); color: #b37000; }
+        .dday-normal { background: rgba(83,218,191,0.12); color: #2a8a74; }
+        .past-label { background: rgba(0,0,0,0.05); color: var(--text-3); }
+        .db-table .link-btn { font-size: 0.75rem; font-weight: 600; color: var(--pink); text-decoration: none; white-space: nowrap; }
+        .db-table .link-btn:hover { opacity: 0.75; }
+        .db-org { font-size: 0.72rem; color: var(--text-3); display: block; margin-top: 0.1rem; }
+
         /* ── REVIEW ── */
         .review-item {
             background: #fdfdfd;
@@ -1543,6 +1586,29 @@
 
 </div>
 
+<!-- ========== FILMDB (숨김 페이지 — URL: #filmdb) ========== -->
+<div class="page" id="filmdb">
+    <div class="section">
+        <p class="section-label">단편영화 DB</p>
+        <h2 class="section-title">단편영화 지원 & 영화제</h2>
+        <p style="font-size:0.875rem;color:var(--text-2);margin-bottom:1.5rem;line-height:1.7;">국내 단편영화 제작 지원 프로그램과 출품 가능한 영화제를 모아뒀어요. 청소년 대상 포함.</p>
+
+        <div class="filmdb-tabs">
+            <button class="filmdb-tab active" onclick="switchFilmdbTab('support', this)">제작지원</button>
+            <button class="filmdb-tab" onclick="switchFilmdbTab('submission', this)">출품 접수</button>
+            <button class="filmdb-tab" onclick="switchFilmdbTab('festival', this)">영화제 일정</button>
+        </div>
+
+        <div class="filter-row">
+            <button class="filter-btn active" onclick="filterFilmdbStatus('ongoing', this)">진행중</button>
+            <button class="filter-btn" onclick="filterFilmdbStatus('past', this)">마감</button>
+        </div>
+
+        <p style="font-size:0.75rem;color:var(--text-3);margin-bottom:0.75rem;">※ 날짜는 전년도 기준 추정치예요. 반드시 공식 사이트에서 확인하세요.</p>
+        <div id="filmdb-table-container"></div>
+    </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
     <p>© 2025 피리어드 영화입시 과외<br>
@@ -1564,11 +1630,11 @@
         pages.forEach(p => p.classList.remove('active'));
         navBtns.forEach(b => b.classList.remove('active'));
         document.getElementById(name).classList.add('active');
-        document.querySelector(`.nav-btn[data-page="${name}"]`).classList.add('active');
-
-        // 네비게이션 버튼 스크롤 into view
-        const activeBtn = document.querySelector(`.nav-btn[data-page="${name}"]`);
-        activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        const activeNavBtn = document.querySelector(`.nav-btn[data-page="${name}"]`);
+        if (activeNavBtn) {
+            activeNavBtn.classList.add('active');
+            activeNavBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (updateHash) history.pushState(null, '', '#' + name);
@@ -1579,7 +1645,7 @@
     });
 
     // 초기 로드 및 뒤로가기 처리
-    const validPages = ['home', 'teacher', 'class', 'content', 'reviews', 'consultation'];
+    const validPages = ['home', 'teacher', 'class', 'content', 'reviews', 'consultation', 'filmdb'];
     const initHash = location.hash.replace('#', '');
     if (initHash && validPages.includes(initHash)) showPage(initHash, false);
 
@@ -1614,6 +1680,134 @@
         }
     }
     loadBlogPosts();
+
+    // ── FILMDB ──
+    const filmDB = {
+        support: [
+            { name: 'BIKY 청소년 단편영화 제작지원', org: '부산국제어린이청소년영화제', start: '2026-01-10', end: '2026-02-28', eligibility: '만 13~18세 청소년', url: 'https://www.biky.or.kr' },
+            { name: '영화진흥위원회 단편영화 제작지원 (상반기)', org: '영화진흥위원회 (KOFIC)', start: '2026-02-01', end: '2026-03-31', eligibility: '국내 독립 단편 극영화 (40분 미만)', url: 'https://www.kofic.or.kr' },
+            { name: 'CJ문화재단 스토리업', org: 'CJ문화재단', start: '2026-04-01', end: '2026-05-15', eligibility: '단편 연출 경험자', url: 'https://www.cjazit.org' },
+            { name: '성동문화재단 다양성洞 제작지원', org: '성동문화재단', start: '2026-04-01', end: '2026-05-31', eligibility: '문화다양성 주제, 20분 이내', url: 'https://culture.seoul.go.kr' },
+            { name: '대단한 단편영화 제작지원', org: 'KT&G 상상마당', start: '2026-05-01', end: '2026-05-31', eligibility: '연출 경력자, 20분 미만', url: 'https://www.sangsangmadang.com' },
+            { name: '서울배경 독립영화 제작지원', org: '서울영상위원회', start: '2026-05-01', end: '2026-05-31', eligibility: '서울 배경 30% 이상', url: 'https://seoulfc.or.kr' },
+            { name: '협성문화재단 단편영화 제작지원', org: '협성문화재단', start: '2026-06-16', end: '2026-06-27', eligibility: '제작 경험 있는 개인·단체', url: 'http://hscf.co.kr' },
+            { name: 'BISFF 한국 단편영화 제작지원', org: '부산국제단편영화제', start: '2026-07-01', end: '2026-08-31', eligibility: '단편 연출 경력자, 30분 이내', url: 'http://www.bisff.org' },
+            { name: '영화진흥위원회 단편영화 제작지원 (하반기)', org: '영화진흥위원회 (KOFIC)', start: '2026-08-01', end: '2026-09-30', eligibility: '국내 독립 단편 극영화 (40분 미만)', url: 'https://www.kofic.or.kr' },
+        ],
+        submission: [
+            { name: '전주국제영화제 출품', org: '전주국제영화제', start: '2025-11-01', end: '2026-01-31', eligibility: '한국단편경쟁 부문', url: 'https://www.jeonjufest.kr' },
+            { name: '부산국제단편영화제 (BISFF) 출품', org: 'BISFF', start: '2025-10-01', end: '2026-01-31', eligibility: '30분 이내, 한국 초연', url: 'http://www.bisff.org' },
+            { name: 'BIKY 출품', org: '부산국제어린이청소년영화제', start: '2026-01-01', end: '2026-02-28', eligibility: '만 12~18세 제작 단편', url: 'https://www.biky.or.kr' },
+            { name: '서울국제사랑영화제 (SIAFF) 출품', org: 'SIAFF', start: '2026-02-01', end: '2026-03-31', eligibility: '30분 이내, 사랑·가족 주제', url: 'https://siaff.kr' },
+            { name: '서울국제여성영화제 (SIWFF) 출품', org: 'SIWFF', start: '2026-03-01', end: '2026-04-30', eligibility: '아시아 여성감독 단편', url: 'https://siwff.or.kr' },
+            { name: '서울국제어린이영화제 (SICFF) 출품', org: 'SICFF', start: '2026-03-01', end: '2026-05-31', eligibility: '청소년 제작 단편', url: 'https://www.sicff.kr' },
+            { name: '미쟝센단편영화제 (MSFF) 출품', org: 'MSFF', start: '2026-05-01', end: '2026-06-30', eligibility: '30분 미만 장르 단편', url: 'https://www.msff.kr' },
+            { name: '대구단편영화제 (DIFF) 출품', org: 'DIFF', start: '2026-05-01', end: '2026-06-30', eligibility: '40분 이내', url: 'https://diff.kr' },
+            { name: '다양성洞 영화제 출품', org: '성동문화재단', start: '2026-05-01', end: '2026-06-30', eligibility: '문화다양성 주제 단편', url: 'https://culture.seoul.go.kr' },
+            { name: 'DMZ국제다큐멘터리영화제 출품', org: 'DMZ Docs', start: '2026-06-01', end: '2026-07-31', eligibility: '60분 미만 다큐 단편', url: 'https://dmzdocs.com' },
+            { name: '서울독립영화제 (SIFF) 출품', org: 'SIFF', start: '2026-07-01', end: '2026-08-31', eligibility: '독립 단편 경쟁', url: 'https://siff.kr' },
+        ],
+        festival: [
+            { name: '부산국제단편영화제 (BISFF)', start: '2026-04-23', end: '2026-04-28', location: '부산', url: 'http://www.bisff.org' },
+            { name: '전주국제영화제', start: '2026-04-29', end: '2026-05-08', location: '전주', url: 'https://www.jeonjufest.kr' },
+            { name: '서울국제사랑영화제 (SIAFF)', start: '2026-05-19', end: '2026-05-24', location: '서울', url: 'https://siaff.kr' },
+            { name: '서울국제어린이영화제 (SICFF)', start: '2026-05-20', end: '2026-05-25', location: '서울', url: 'https://www.sicff.kr' },
+            { name: '서울어린이창작영화제 (SIKFF)', start: '2026-07-01', end: '2026-07-10', location: '서울', url: 'https://www.sikff.kr' },
+            { name: 'BIKY', start: '2026-07-03', end: '2026-07-09', location: '부산', url: 'https://www.biky.or.kr' },
+            { name: '서울국제여성영화제 (SIWFF)', start: '2026-07-15', end: '2026-07-22', location: '서울', url: 'https://siwff.or.kr' },
+            { name: '대구단편영화제 (DIFF)', start: '2026-08-20', end: '2026-08-26', location: '대구', url: 'https://diff.kr' },
+            { name: 'DMZ국제다큐멘터리영화제', start: '2026-09-10', end: '2026-09-17', location: '파주/고양', url: 'https://dmzdocs.com' },
+            { name: '다양성洞 영화제', start: '2026-09-20', end: '2026-09-21', location: '서울 성동구', url: 'https://culture.seoul.go.kr' },
+            { name: '미쟝센단편영화제 (MSFF)', start: '2026-10-16', end: '2026-10-20', location: '서울', url: 'https://www.msff.kr' },
+            { name: '서울독립영화제 (SIFF)', start: '2026-11-27', end: '2026-12-05', location: '서울', url: 'https://siff.kr' },
+        ]
+    };
+
+    let currentFilmdbTab = 'support';
+    let currentStatusFilter = 'ongoing';
+
+    function getDday(endStr) {
+        const today = new Date(); today.setHours(0,0,0,0);
+        const end = new Date(endStr); end.setHours(0,0,0,0);
+        return Math.ceil((end - today) / 86400000);
+    }
+
+    function ddayBadge(d) {
+        if (d < 0) return '<span class="dday-badge past-label">마감</span>';
+        if (d === 0) return '<span class="dday-badge dday-urgent">D-day</span>';
+        if (d <= 14) return `<span class="dday-badge dday-urgent">D-${d}</span>`;
+        if (d <= 45) return `<span class="dday-badge dday-soon">D-${d}</span>`;
+        return `<span class="dday-badge dday-normal">D-${d}</span>`;
+    }
+
+    function fmtDate(s) {
+        const d = new Date(s);
+        return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+    }
+
+    function renderFilmdbTable() {
+        const container = document.getElementById('filmdb-table-container');
+        if (!container) return;
+        const today = new Date(); today.setHours(0,0,0,0);
+        const items = filmDB[currentFilmdbTab];
+        const isFestivalTab = currentFilmdbTab === 'festival';
+
+        const ongoing = [...items].filter(i => new Date(i.end) >= today)
+                                  .sort((a,b) => new Date(a.end) - new Date(b.end));
+        const past    = [...items].filter(i => new Date(i.end) < today)
+                                  .sort((a,b) => new Date(b.end) - new Date(a.end));
+        const show = currentStatusFilter === 'ongoing' ? ongoing : past;
+
+        const headers = isFestivalTab
+            ? ['영화제명','개최시작','개최종료','개최지','링크']
+            : ['타이틀','접수시작','접수마감','자격','링크'];
+
+        let rows = '';
+        if (show.length === 0) {
+            rows = '<tr><td colspan="5" style="text-align:center;color:var(--text-3);padding:1.5rem 0;">해당 항목이 없습니다.</td></tr>';
+        } else {
+            show.forEach(item => {
+                const dday = getDday(item.end);
+                const badge = currentStatusFilter === 'ongoing' ? ddayBadge(dday) : '<span class="dday-badge past-label">마감</span>';
+                if (isFestivalTab) {
+                    rows += `<tr>
+                        <td><strong>${item.name}</strong></td>
+                        <td>${fmtDate(item.start)}</td>
+                        <td>${fmtDate(item.end)}${badge}</td>
+                        <td>${item.location}</td>
+                        <td><a href="${item.url}" target="_blank" class="link-btn">보기 →</a></td>
+                    </tr>`;
+                } else {
+                    rows += `<tr>
+                        <td><strong>${item.name}</strong><span class="db-org">${item.org}</span></td>
+                        <td>${fmtDate(item.start)}</td>
+                        <td>${fmtDate(item.end)}${badge}</td>
+                        <td>${item.eligibility}</td>
+                        <td><a href="${item.url}" target="_blank" class="link-btn">보기 →</a></td>
+                    </tr>`;
+                }
+            });
+        }
+
+        container.innerHTML = '<div class="db-table-wrap"><table class="db-table"><thead><tr>' + headers.map(h=>`<th>${h}</th>`).join('') + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+    }
+
+    function switchFilmdbTab(tab, btn) {
+        currentFilmdbTab = tab;
+        document.querySelectorAll('.filmdb-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderFilmdbTable();
+    }
+
+    function filterFilmdbStatus(status, btn) {
+        currentStatusFilter = status;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderFilmdbTable();
+    }
+
+    renderFilmdbTable();
+
 
 
 
