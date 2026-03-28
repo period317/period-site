@@ -386,6 +386,74 @@
             line-height: 1.65;
         }
 
+        /* ── REVIEW CARD ── */
+        .review-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            margin-top: 0.625rem;
+            transition: box-shadow 0.2s ease;
+        }
+        .review-item:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+        .review-school {
+            display: inline-block;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--blue);
+            background: rgba(68,151,233,0.08);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+        .review-title {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.625rem;
+            line-height: 1.45;
+            letter-spacing: -0.3px;
+        }
+        .review-summary {
+            font-size: 0.8125rem;
+            color: var(--text-2);
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+        .review-summary li {
+            list-style: none;
+            padding-left: 1em;
+            text-indent: -1em;
+            margin-bottom: 0.2rem;
+        }
+        .review-summary li::before { content: "• "; color: var(--mint); font-weight: 700; }
+        .review-toggle {
+            font-size: 0.8125rem;
+            color: var(--pink);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            font-weight: 600;
+        }
+        .review-toggle:hover { text-decoration: underline; }
+        .review-full {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+            font-size: 0.8125rem;
+            color: var(--text-2);
+            line-height: 1.75;
+            margin-top: 0;
+        }
+        .review-full.open {
+            max-height: 2000px;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+        }
+
         /* ── INLINE LINK ── */
         .inline-link {
             display: inline-flex;
@@ -1070,14 +1138,16 @@
 
             .blog-grid .blog-card { margin-top: 0; }
 
-            /* 후기: 3컬럼 */
+            /* 후기: 2컬럼 */
             .reviews-grid {
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
                 gap: 0.75rem;
             }
 
             .reviews-grid .review-item { margin-top: 0; }
+
+            .review-item .review-full { max-height: 400px; }
 
             /* 상담 배너 */
             .consult-banner { max-width: 640px; }
@@ -1326,6 +1396,30 @@
         <!-- ── 입시과외 탭 ── -->
         <div class="class-panel" id="class-tutoring">
 
+            <p style="font-size:0.875rem;color:var(--text-2);margin-bottom:1.75rem;line-height:1.8;">영화입시는 정해진 공식이 없습니다. 같은 학교라도 학생마다 준비해야 할 것이 다르고, 쓰는 것과 말하는 것을 동시에 끌어올려야 합니다.<br>피리어드는 학생 한 명의 이야기를 깊이 이해하는 데서 수업을 시작합니다. 기술을 가르치는 것이 아니라, <strong>이 학생이 왜 영화를 하고 싶은지</strong>를 함께 찾아가는 과정입니다.</p>
+
+            <div class="content-section">
+                <h3>이런 분에게 필요해요</h3>
+                <div class="timeline">
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>영화과 입시를 준비하고 있지만, 어디서부터 시작해야 할지 모르겠는 학생</p></div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>학원을 다녀봤지만 맞지 않았거나, 1:1로 밀도 있는 수업을 원하는 학생</p></div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>글쓰기·스토리텔링에 자신이 없거나, 면접에서 자기 이야기를 풀어내는 데 어려움을 느끼는 학생</p></div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>재수 이상으로, 이전 입시에서 부족했던 부분을 정확히 짚고 싶은 학생</p></div>
+                    </div>
+                </div>
+            </div>
+
             <div class="content-section">
                 <h3>수업 방식</h3>
                 <div class="timeline">
@@ -1430,6 +1524,28 @@
             </div>
 
             <div class="content-section">
+                <h3>이런 분에게 필요해요</h3>
+                <div class="timeline">
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>영화를 만들어 보고 싶지만, 어떻게 시작해야 할지 막막한 학생</p></div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>입시 포트폴리오로 단편영화를 제출하고 싶은 학생</p></div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>시나리오는 쓸 수 있는데, 촬영·후반 작업 등 특정 단계에서 도움이 필요한 학생</p></div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>제작 경험 없이 대학에 갔는데, 과제 전에 먼저 경험해 보고 싶은 대학생</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
                 <h3>제작 과정 — 필요한 단계부터 지원</h3>
                 <p style="font-size:0.8125rem;color:var(--text-2);margin-bottom:1rem;line-height:1.7;">전체 과정을 함께할 수도 있고, 특정 단계만 도움받을 수도 있습니다.</p>
                 <div class="timeline">
@@ -1524,11 +1640,61 @@
         <!-- ── 피드백 탭 ── -->
         <div class="class-panel" id="class-feedback" style="display:none;">
 
-            <p style="font-size:0.875rem;color:var(--text-2);margin-bottom:1.75rem;line-height:1.8;">단편·장편 시나리오, 기획의도, 논술, 자소서, 면접지 등 — 영화와 글쓰기에 관련된 다양한 문서에 대해 <strong>단기 피드백</strong>을 제공합니다.</p>
+            <p style="font-size:0.875rem;color:var(--text-2);margin-bottom:1rem;line-height:1.8;">단편·장편 시나리오, 기획의도, 논술, 자소서, 면접지 등 — 영화와 글쓰기에 관련된 다양한 문서에 대해 <strong>단기 피드백</strong>을 제공합니다.</p>
+
+            <p style="font-size:0.875rem;color:var(--text-2);margin-bottom:1.75rem;line-height:1.8;">피드백에는 정답이 없습니다. 한 사람이 모든 답을 줄 수 없고, 다양한 사람에게 다양한 의견을 들어보는 것 자체가 의미 있습니다. 교수님 피드백이 답답할 때도, 다른 시각이 필요할 때도 있으니까요. 여러 의견 속에서 정답으로 가는 실마리를 찾는 것 — 그게 피드백의 진짜 가치입니다.</p>
+
+            <div class="content-section">
+                <h3>이런 분에게 필요해요</h3>
+                <div class="timeline">
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>시나리오를 쓰고 있는데, 교수님이나 주변 피드백 외에 다른 시각이 필요한 대학생·대학원생</p></div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>입시용 자소서나 면접지를 점검받고 싶은 수험생</p></div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>기획의도나 논술 등 영화 관련 글쓰기에 확신이 없는 분</p></div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content"><p>장편 시나리오 작업 중인데, 솔직하고 구체적인 의견이 필요한 분</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>피드백 원칙</h3>
+                <div class="timeline">
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content">
+                            <h4>"개연성이 약하다" 같은 일반론은 하지 않습니다</h4>
+                            <p>무엇이 왜 문제인지, 어떻게 바꿀 수 있는지 — 구체적인 대안을 제시합니다. 그것이 유일한 정답은 아니더라도, 방향을 잡는 데 도움이 됩니다.</p>
+                        </div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content">
+                            <h4>지엽적인 줄 긋기가 아니라, 전체 맥락에서 판단합니다</h4>
+                            <p>크게 고칠 것과 유지할 것을 먼저 짚고, 그 안에서 세부적으로 손볼 부분을 이야기합니다.</p>
+                        </div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-content">
+                            <h4>정말 내 작품이라면 어떻게 할지, 그 마음으로 피드백합니다</h4>
+                            <p>좋은 말보다 솔직한 말이 도움이 됩니다. 비판적인 내용이 중심이지만, 그만큼 진심입니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="content-section">
                 <h3>시나리오 피드백</h3>
-                <p style="font-size:0.8125rem;color:var(--text-2);margin-bottom:1rem;line-height:1.7;">이야기 구조, 개연성, 캐릭터, 대사뿐 아니라 장면화에 대한 것까지 구체적으로 피드백합니다. 좋은 점도 짚지만, 주로 비판적인 내용 중심으로 솔직하게 드립니다.</p>
                 <div class="price-table">
                     <div class="price-row">
                         <span class="price-name">단편영화 시나리오</span>
